@@ -2,6 +2,14 @@
 minúsculas Hacer una función contadorDeLetras2 que reciba como parámetro de entrada dos cadenas de texto y una letra y devuelva la cadena de texto en la que dicha letra esta más presente. Utilizar para ello un bucle for. 
 No tener en cuenta si la letra pasada como parámetro esta en mayúsculas o minúsculas.*/
 
+/**
+ * Devuelve la cadena con mayor numero de caracters.
+ * @param {string} str 
+ * @param {string} str2 
+ * @param {string} lyrics 
+ * @returns {string}
+ */
+
 function contadorDeLetras2(str, str2, lyrics) {
     let result = "";
     let num1 = 0;
