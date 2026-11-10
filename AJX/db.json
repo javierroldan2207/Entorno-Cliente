@@ -1,0 +1,20 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Teclado",
+      "precio": 99
+    },
+    {
+      "id": "2",
+      "nombre": "Ratón",
+      "precio": 15
+    },
+    {
+      "id": "3",
+      "nombre": "Monitor",
+      "precio": 150
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

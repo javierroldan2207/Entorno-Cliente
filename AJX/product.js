@@ -1,38 +1,38 @@
-const btnCargar = document.getElementById("btnCargar");
-const listaProductos = document.getElementById("listaProductos");
+document.addEventListener("DOMContentLoaded", () => {
+    const btnCargar = document.getElementById("btnCargar");
+    const listaProductos = document.getElementById("listaProductos");
 
-btnCargar.addEventListener("click", cargarProductos);
+    btnCargar.addEventListener("click", cargarProductos);
 
+    function cargarProductos() {
+        const xhr = new XMLHttpRequest();
 
-function cargarProductos() {
-    const xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:3000/productos", true);
 
-    xhr.open("GET", "http://localhost:3000/products", true);
+        // Cuando llega la respuesta del servidor
+        xhr.addEventListener("load", function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                const productos = JSON.parse(xhr.responseText);
+                mostrarProductos(productos);
+            } else {
+                console.error("Error al cargar los productos:", xhr.status, xhr.statusText);
+            }
+        });
 
-    xhr.addEventListener("load", function (){
-        if(xhr.status === 200){
-            const respuesta = JSON.parse(xhr.responseText);
-            
-            mostrarProductos(respuesta.products);
-        } else {
-            console.log("Error: " + xhr.status);
-        }
-    });
+        xhr.addEventListener("error", function () {
+            console.error("Error de red: ¿está el servidor encendido?");
+        });
 
-    xhr.send();
-}
+        xhr.send();
+    }
 
-function mostrarProductos(productos){
-    listaProductos.replaceChildren();
+    function mostrarProductos(productos) {
+        listaProductos.innerHTML = "";
 
-    productos.forEach(function (producto){
-        const li = document.createElement("li");
-
-        const texto = document.createTextNode(
-            `${producto.id} - ${producto.nombre}:${producto.precio} €`
-        );
-
-        li.appendChild(texto);
-        listaProductos.appendChild(li);
-    });
-}
+        productos.forEach(producto => {
+            const li = document.createElement("li");
+            li.textContent = `${producto.nombre} - ${producto.precio} €`;
+            listaProductos.appendChild(li);
+        });
+    }
+});
